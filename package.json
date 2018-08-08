@@ -6,14 +6,27 @@
   "directories": {
     "lib": "lib"
   },
-  "author": "Cris Mihalache <cris.m@bitfinex.com>",
-  "license": "",
+  "author": "Cris Mihalache <cris.m@bitfinex.com> (https://www.bitfinex.com)",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "babel -q ./index.js -d ./dist && babel -q ./lib -d ./dist/lib && copy package.json dist",
     "test": "NODE_ENV=test BABEL_ENV=test node_modules/tape-watch/bin/tape-watch -r babel-register ./test/*.spec.js | faucet",
     "postinstall": "npm run build"
   },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitfinexcom/bfx-hf-indicators.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bitfinexcom/bfx-hf-indicators/issues"
+  },
+  "keywords": [
+    "honey framework",
+    "bitfinex",
+    "bitcoin",
+    "BTC"
+  ],
   "dependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.26.3",
