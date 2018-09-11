@@ -22,6 +22,7 @@ const PPO = require('./lib/price_oscillator')
 const RVGI = require('./lib/relative_vigor_index')
 const RVI = require('./lib/relative_volatility_index')
 const Stochastic = require('./lib/stochastic')
+const VO = require('./lib/volume_oscillator')
 
 module.exports = {
   Indicator,
@@ -45,5 +46,6 @@ module.exports = {
   PPO,
   RVGI,
   RVI,
-  Stochastic
+  Stochastic,
+  VO
 }
