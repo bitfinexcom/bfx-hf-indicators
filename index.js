@@ -23,6 +23,7 @@ const RVGI = require('./lib/relative_vigor_index')
 const RVI = require('./lib/relative_volatility_index')
 const Stochastic = require('./lib/stochastic')
 const VO = require('./lib/volume_oscillator')
+const OBV = require('./lib/on_balance_volume')
 
 module.exports = {
   Indicator,
@@ -47,5 +48,6 @@ module.exports = {
   RVGI,
   RVI,
   Stochastic,
-  VO
+  VO,
+  OBV
 }
