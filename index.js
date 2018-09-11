@@ -18,6 +18,7 @@ const ALMA = require('./lib/alma')
 const AO = require('./lib/awesome_oscillator')
 const ADX = require('./lib/average_directional_index')
 const BOP = require('./lib/balance_of_power')
+const PPO = require('./lib/price_oscillator')
 
 module.exports = {
   Indicator,
@@ -37,5 +38,6 @@ module.exports = {
   ALMA,
   AO,
   ADX,
-  BOP
+  BOP,
+  PPO
 }
