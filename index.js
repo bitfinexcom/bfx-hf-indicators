@@ -11,6 +11,13 @@ const Momentum = require('./lib/momentum')
 const Acceleration = require('./lib/acceleration')
 const StdDeviation = require('./lib/stddev')
 const BollingerBands = require('./lib/bbands')
+const Aroon = require('./lib/aroon')
+const AccumDist = require('./lib/accumulation_distribution')
+const ASI = require('./lib/accumulative_swing_index')
+const ALMA = require('./lib/alma')
+const AO = require('./lib/awesome_oscillator')
+const ADX = require('./lib/average_directional_index')
+const BOP = require('./lib/balance_of_power')
 
 module.exports = {
   Indicator,
@@ -23,5 +30,12 @@ module.exports = {
   Acceleration,
   StdDeviation,
   BollingerBands,
-  ATR
+  ATR,
+  Aroon,
+  AccumDist,
+  ASI,
+  ALMA,
+  AO,
+  ADX,
+  BOP
 }
