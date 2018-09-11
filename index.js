@@ -20,6 +20,7 @@ const ADX = require('./lib/average_directional_index')
 const BOP = require('./lib/balance_of_power')
 const PPO = require('./lib/price_oscillator')
 const RVGI = require('./lib/relative_vigor_index')
+const RVI = require('./lib/relative_volatility_index')
 
 module.exports = {
   Indicator,
@@ -41,5 +42,6 @@ module.exports = {
   ADX,
   BOP,
   PPO,
-  RVGI
+  RVGI,
+  RVI
 }
