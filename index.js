@@ -26,6 +26,7 @@ const VO = require('./lib/volume_oscillator')
 const OBV = require('./lib/on_balance_volume')
 const PVT = require('./lib/price_volume_trend')
 const MassIndex = require('./lib/mass_index')
+const CMF = require('./lib/chaikin_money_flow')
 
 module.exports = {
   Indicator,
@@ -53,5 +54,6 @@ module.exports = {
   VO,
   OBV,
   PVT,
-  MassIndex
+  MassIndex,
+  CMF
 }
