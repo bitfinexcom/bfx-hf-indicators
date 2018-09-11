@@ -25,6 +25,7 @@ const Stochastic = require('./lib/stochastic')
 const VO = require('./lib/volume_oscillator')
 const OBV = require('./lib/on_balance_volume')
 const PVT = require('./lib/price_volume_trend')
+const MassIndex = require('./lib/mass_index')
 
 module.exports = {
   Indicator,
@@ -51,5 +52,6 @@ module.exports = {
   Stochastic,
   VO,
   OBV,
-  PVT
+  PVT,
+  MassIndex
 }
