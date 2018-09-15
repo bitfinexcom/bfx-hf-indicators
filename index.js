@@ -29,6 +29,7 @@ const MassIndex = require('./lib/mass_index')
 const CMF = require('./lib/chaikin_money_flow')
 const DPO = require('./lib/detrended_price_oscillator')
 const PC = require('./lib/price_channel')
+const NetVolume = require('./lib/net_volume')
 
 module.exports = {
   Indicator,
@@ -59,5 +60,6 @@ module.exports = {
   MassIndex,
   CMF,
   DPO,
-  PC
+  PC,
+  NetVolume
 }
