@@ -31,6 +31,7 @@ const DPO = require('./lib/detrended_price_oscillator')
 const PC = require('./lib/price_channel')
 const NetVolume = require('./lib/net_volume')
 const KST = require('./lib/know_sure_thing')
+const TSI = require('./lib/true_strength_index')
 
 module.exports = {
   Indicator,
@@ -63,5 +64,6 @@ module.exports = {
   DPO,
   PC,
   NetVolume,
-  KST
+  KST,
+  TSI
 }
