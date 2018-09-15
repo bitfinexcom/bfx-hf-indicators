@@ -30,6 +30,7 @@ const CMF = require('./lib/chaikin_money_flow')
 const DPO = require('./lib/detrended_price_oscillator')
 const PC = require('./lib/price_channel')
 const NetVolume = require('./lib/net_volume')
+const KST = require('./lib/know_sure_thing')
 
 module.exports = {
   Indicator,
@@ -61,5 +62,6 @@ module.exports = {
   CMF,
   DPO,
   PC,
-  NetVolume
+  NetVolume,
+  KST
 }
