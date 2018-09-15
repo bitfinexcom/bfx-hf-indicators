@@ -28,6 +28,7 @@ const PVT = require('./lib/price_volume_trend')
 const MassIndex = require('./lib/mass_index')
 const CMF = require('./lib/chaikin_money_flow')
 const DPO = require('./lib/detrended_price_oscillator')
+const PC = require('./lib/price_channel')
 
 module.exports = {
   Indicator,
@@ -57,5 +58,6 @@ module.exports = {
   PVT,
   MassIndex,
   CMF,
-  DPO
+  DPO,
+  PC
 }
