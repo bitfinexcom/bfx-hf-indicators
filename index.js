@@ -33,6 +33,7 @@ const NetVolume = require('./lib/net_volume')
 const KST = require('./lib/know_sure_thing')
 const TSI = require('./lib/true_strength_index')
 const WR = require('./lib/williams_r')
+const Envelope = require('./lib/envelope')
 
 module.exports = {
   Indicator,
@@ -67,5 +68,6 @@ module.exports = {
   NetVolume,
   KST,
   TSI,
-  WR
+  WR,
+  Envelope,
 }
