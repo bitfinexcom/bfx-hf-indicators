@@ -38,6 +38,7 @@ const EOM = require('./lib/ease_of_movement')
 const ChandeMO = require('./lib/chande_momentum_oscillator')
 const ChaikinOsc = require('./lib/chaikin_oscillator')
 const CoppockCurve = require('./lib/coppock_curve')
+const VWMA = require('./lib/vwma')
 
 module.exports = {
   Indicator,
@@ -78,4 +79,5 @@ module.exports = {
   ChandeMO,
   ChaikinOsc,
   CoppockCurve,
+  VWMA,
 }
