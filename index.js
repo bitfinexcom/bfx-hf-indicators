@@ -36,6 +36,7 @@ const WR = require('./lib/williams_r')
 const Envelope = require('./lib/envelope')
 const EOM = require('./lib/ease_of_movement')
 const ChandeMO = require('./lib/chande_momentum_oscillator')
+const ChaikinOsc = require('./lib/chaikin_oscillator')
 
 module.exports = {
   Indicator,
@@ -74,4 +75,5 @@ module.exports = {
   Envelope,
   EOM,
   ChandeMO,
+  ChaikinOsc,
 }
