@@ -34,6 +34,7 @@ const KST = require('./lib/know_sure_thing')
 const TSI = require('./lib/true_strength_index')
 const WR = require('./lib/williams_r')
 const Envelope = require('./lib/envelope')
+const EOM = require('./lib/ease_of_movement')
 
 module.exports = {
   Indicator,
@@ -70,4 +71,5 @@ module.exports = {
   TSI,
   WR,
   Envelope,
+  EOM,
 }
