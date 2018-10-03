@@ -39,6 +39,7 @@ const ChandeMO = require('./lib/chande_momentum_oscillator')
 const ChaikinOsc = require('./lib/chaikin_oscillator')
 const CoppockCurve = require('./lib/coppock_curve')
 const VWMA = require('./lib/vwma')
+const VWAP = require('./lib/vwap')
 
 module.exports = {
   Indicator,
@@ -80,4 +81,5 @@ module.exports = {
   ChaikinOsc,
   CoppockCurve,
   VWMA,
+  VWAP,
 }
