@@ -118,6 +118,8 @@ const v = rsi.v() // query current RSI(14) value
 * Simple Moving Average
 * Standard Deviation
 * Stochastic
+* Stochastic RSI
+* TRIX
 * True Strength Index
 * VWAP
 * Volume Oscillator
