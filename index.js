@@ -41,6 +41,7 @@ const CoppockCurve = require('./lib/coppock_curve')
 const VWMA = require('./lib/vwma')
 const VWAP = require('./lib/vwap')
 const DC = require('./lib/donchian_channels')
+const StochRSI = require('./lib/stochastic_rsi')
 
 module.exports = {
   Indicator,
@@ -84,4 +85,5 @@ module.exports = {
   VWMA,
   VWAP,
   DC,
+  StochRSI,
 }
