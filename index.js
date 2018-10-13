@@ -43,6 +43,7 @@ const VWAP = require('./lib/vwap')
 const DC = require('./lib/donchian_channels')
 const StochRSI = require('./lib/stochastic_rsi')
 const TRIX = require('./lib/trix')
+const EMAVolume = require('./lib/ema_vol')
 
 module.exports = {
   Indicator,
@@ -88,4 +89,5 @@ module.exports = {
   DC,
   StochRSI,
   TRIX,
+  EMAVolume,
 }

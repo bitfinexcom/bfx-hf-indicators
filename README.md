@@ -102,6 +102,7 @@ const v = rsi.v() // query current RSI(14) value
 * Ease of Movement
 * Envelope
 * Exponential Moving Average
+* EMA Volume
 * Know Sure Thing
 * MACD
 * Mass Index
