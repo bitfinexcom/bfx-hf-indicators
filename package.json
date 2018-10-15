@@ -1,8 +1,8 @@
 {
   "name": "bfx-hf-indicators",
-  "version": "0.0.1",
-  "description": "HF indicators module",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "A library of trading indicators for Node.JS",
+  "main": "./dist/index.js",
   "directories": {
     "lib": "lib"
   },
@@ -13,7 +13,6 @@
     "test": "NODE_ENV=test BABEL_ENV=test node_modules/tape-watch/bin/tape-watch -r babel-register ./test/*.spec.js | faucet",
     "postinstall": "npm run build"
   },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/bitfinexcom/bfx-hf-indicators.git"
@@ -28,6 +27,10 @@
     "BTC"
   ],
   "dependencies": {
+    "babel": "^6.23.0",
+    "babel-eslint": "^7.2.2",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-lodash": "^3.2.11",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -38,15 +41,10 @@
     "bignumber.js": "^7.2.1",
     "copy": "^0.3.1",
     "lodash": "^4.17.10",
-    "sprintf-js": "^1.1.1"
+    "sprintf-js": "^1.1.1",
+    "create-index": "^2.3.0"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-eslint": "^7.2.2",
-    "babel-loader": "^6.4.1",
-    "babel-plugin-lodash": "^3.2.11",
-    "compression-webpack-plugin": "^0.4.0",
-    "create-index": "^2.3.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-standard": "^7.0.0",
@@ -58,7 +56,6 @@
     "faucet": "^0.0.1",
     "tape": "^4.6.3",
     "tape-watch": "^2.3.0",
-    "webpack": "^2.4.1",
     "yargs": "6.6.0"
   }
 }
