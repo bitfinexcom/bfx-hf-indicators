@@ -1,6 +1,6 @@
 {
   "name": "bfx-hf-indicators",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library of trading indicators for Node.JS",
   "main": "./dist/index.js",
   "directories": {
@@ -27,7 +27,6 @@
     "BTC"
   ],
   "dependencies": {
-    "babel": "^6.23.0",
     "babel-eslint": "^7.2.2",
     "babel-loader": "^6.4.1",
     "babel-plugin-lodash": "^3.2.11",
