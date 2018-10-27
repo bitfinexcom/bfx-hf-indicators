@@ -39,6 +39,7 @@ const ChandeMO = require('./lib/chande_momentum_oscillator')
 const ChaikinOsc = require('./lib/chaikin_oscillator')
 const CoppockCurve = require('./lib/coppock_curve')
 const VWMA = require('./lib/vwma')
+const WMA = require('./lib/wma')
 const VWAP = require('./lib/vwap')
 const DC = require('./lib/donchian_channels')
 const StochRSI = require('./lib/stochastic_rsi')
@@ -86,6 +87,7 @@ module.exports = {
   CoppockCurve,
   VWMA,
   VWAP,
+  WMA,
   DC,
   StochRSI,
   TRIX,

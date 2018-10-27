@@ -125,4 +125,5 @@ const v = rsi.v() // query current RSI(14) value
 * VWAP
 * Volume Oscillator
 * Volume Weighted Moving Average
+* Weighted Moving Average
 * Williams %R
