@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "babel -q ./index.js -d ./dist && babel -q ./lib -d ./dist/lib && copy package.json dist",
-    "test": "NODE_ENV=test BABEL_ENV=test node_modules/tape-watch/bin/tape-watch -r babel-register ./test/*.spec.js | faucet",
+    "test": "NODE_ENV=test BABEL_ENV=test node_modules/tape/bin/tape -r babel-register ./test/*.spec.js | faucet",
     "postinstall": "npm run build"
   },
   "repository": {
