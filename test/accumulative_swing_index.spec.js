@@ -19,9 +19,10 @@ const candles = [
 ]
 
 test('ASI is calculated properly', (t) => {
-  const asi = new ASI([6400]);
+  const asi = new ASI([6400])
 
-  asi.add(candles[0]);
-  asi.add(candles[1]);
+  asi.add(candles[0])
+  asi.add(candles[1])
   t.equal(asi.v().toFixed(13), '-0.1190821779318')
+  t.end()
 })
