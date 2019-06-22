@@ -83,7 +83,8 @@ const v = rsi.v() // query current RSI(14) value
 ```
 
 ## Available Indicators
-* Absolute True Range
+* Average True Range
+* Normalised Average True Range
 * Acceleration
 * Accumulation/Distribution
 * Accumulative Swing Index

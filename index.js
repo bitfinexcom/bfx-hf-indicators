@@ -45,6 +45,7 @@ const DC = require('./lib/donchian_channels')
 const StochRSI = require('./lib/stochastic_rsi')
 const TRIX = require('./lib/trix')
 const EMAVolume = require('./lib/ema_vol')
+const NATR = require('./lib/normalised_atr')
 
 module.exports = {
   Indicator,
@@ -58,6 +59,7 @@ module.exports = {
   StdDeviation,
   BollingerBands,
   ATR,
+  NATR,
   Aroon,
   AccumDist,
   ASI,
