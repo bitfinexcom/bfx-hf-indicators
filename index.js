@@ -3,6 +3,7 @@
 const Indicator = require('./lib/indicator')
 const SMA = require('./lib/sma')
 const EMA = require('./lib/ema')
+const WildersMA = require('./lib/wilders_ma')
 const MACD = require('./lib/macd')
 const RSI = require('./lib/rsi')
 const ROC = require('./lib/roc')
@@ -51,6 +52,7 @@ module.exports = {
   Indicator,
   SMA,
   EMA,
+  WildersMA,
   MACD,
   RSI,
   Momentum,
