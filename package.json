@@ -52,17 +52,15 @@
     "create-index": "^2.3.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
     "eslint-config-standard": "^7.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.0.1",
-    "faucet": "^0.0.1",
-    "tape": "^4.6.3",
-    "tape-watch": "^2.3.0",
-    "yargs": "6.6.0"
+    "istanbul": "^0.4.5",
+    "mocha": "^6.2.0",
+    "standard": "^14.2.0"
   }
 }
