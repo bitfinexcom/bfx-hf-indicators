@@ -1,0 +1,53 @@
+# 2.0.1
+- manifest: bump deps
+- meta: add github issue/pr templates
+- meta: standardize travis config
+- meta: convert tests to mocha
+- meta: add example
+
+# 2.0.0
+- major version bump due to changes in 1.0.6
+
+# 1.0.6
+- feature: Wilders Moving Average
+- MACD refactor: update value key names for react-stockcharts compatibility
+- RSI refactor: switch to WildersMA internally
+- ALMA feature: expose candle key in args
+- EMA feature: expose candle key in args
+- refactor: use BigN in a few more places
+- refactor: rename candle model key 'vol' to 'volume'
+- fix: missing imports
+
+# 1.0.5
+- refactor: copy all metadata (arguments, etc) to indicator instances
+- NATR fix: only add ATR values when seeded
+
+# 1.0.4
+- feature: save UI definition on indicator instances
+- feature: Normalized Average True Range
+
+# 1.0.3
+- MACD fix: missing import
+- ASI fix: paranthesis typo
+- ASI feature: add test
+- RVI fix: internal
+- PPO fix: reset signal EMA in PPO reset() method
+- fix: add missing test end() call in ASI test
+
+# 1.0.2
+- WeightedMovingAverage fix: export on package
+- BalanceOfPower fix: prevent divide by zero
+- RelativeVigorIndex fix: RVGI class name typo
+- refactor: return values from all indicator add/update methods
+- feature: add serialize/unserialize methods to all indicators
+- fix: provide default argument values for all indicators
+- meta: add LICENSE
+
+# 1.0.1
+- EMAVolume fix: set seedPeriod from arg
+- EMAVolume fix: add reset() method
+- manifest: rm babel dep
+- meta: rm package-lock.json
+
+# 1.0.0
+- initial version [0.0.1 was tagged early in initial development]
