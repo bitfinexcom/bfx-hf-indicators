@@ -6,7 +6,12 @@
   "directories": {
     "lib": "lib"
   },
-  "author": "Cris Mihalache <cris.m@bitfinex.com> (https://www.bitfinex.com)",
+  "author": "Bitfinex",
+  "contributors": [
+    "Cris Mihalache <cris.m@bitfinex.com> (https://www.bitfinex.com)",
+    "Paolo Ardoino <paolo@bitfinex.com> (https://www.bitfinex.com)",
+    "Jacob Plaster <jacob.plaster@bitfinex.com> (https://www.bitfinex.com)"
+  ],
   "license": "Apache-2.0",
   "scripts": {
     "build": "babel -q ./index.js -d ./dist && babel -q ./lib -d ./dist/lib && copy package.json dist",
