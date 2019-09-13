@@ -95,5 +95,5 @@ module.exports = {
   DC,
   StochRSI,
   TRIX,
-  EMAVolume,
+  EMAVolume
 }

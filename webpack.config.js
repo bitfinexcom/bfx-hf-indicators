@@ -6,7 +6,7 @@ const path = require('path')
 const config = {
   bail: true,
   entry: {
-    index: path.join(__dirname, 'index.js'),
+    index: path.join(__dirname, 'index.js')
   },
 
   output: {
@@ -17,7 +17,7 @@ const config = {
   },
 
   externals: {
-    'lodash': 'lodash',
+    lodash: 'lodash'
   },
 
   module: {
