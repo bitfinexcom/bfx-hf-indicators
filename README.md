@@ -78,7 +78,7 @@ const v = rsi.v() // query current RSI(14) value
 
 ### Docs
 
-See `docs/usage.md` for an overview of the system, and the `examples/` folder for executable examples.
+[See `docs/usage.md`](/docs/usage.md) for an overview of the system, and the [`examples/`](/examples) folder for executable examples.
 
 ### Contributing
 
