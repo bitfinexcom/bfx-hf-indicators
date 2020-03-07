@@ -3,6 +3,11 @@
   "version": "2.0.3",
   "description": "A library of trading indicators for Node.JS",
   "main": "./dist/index.js",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "directories": {
     "lib": "lib"
   },
@@ -16,9 +21,9 @@
   "scripts": {
     "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib && copy package.json dist",
     "postinstall": "npm run build",
-    "lint": "standard",
+    "lint": "eslint examples/ test/ lib/ index.js",
     "test": "npm run lint && npm run unit",
-    "unit": "NODE_ENV=test istanbul cover _mocha -- -R spec -b --recursive",
+    "unit": "NODE_ENV=test NODE_PATH=lib/ nyc --check-coverage --lines 90 --branches 60 --functions 90 --statements 90 --reporter=lcov --reporter=html mocha -b --recursive",
     "test-without-coverage": "NODE_ENV=test mocha -R spec -b --recursive"
   },
   "repository": {
@@ -56,8 +61,9 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "istanbul": "^0.4.5",
+    "husky": "^4.2.3",
     "mocha": "^7.1.0",
+    "nyc": "^15.0.0",
     "standard": "^14.2.0"
   }
 }
