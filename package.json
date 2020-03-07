@@ -41,8 +41,8 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-stage-0": "^7.0.0",
-    "babel-eslint": "^7.2.2",
-    "bignumber.js": "^7.2.1",
+    "babel-eslint": "^10.1.0",
+    "bignumber.js": "^9.0.0",
     "copy": "^0.3.1",
     "create-index": "^2.3.0",
     "lodash": "^4.17.10",
@@ -50,14 +50,14 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^7.0.0",
-    "eslint-loader": "^1.7.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.3",
     "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.0.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "istanbul": "^0.4.5",
-    "mocha": "^6.2.0",
+    "mocha": "^7.1.0",
     "standard": "^14.2.0"
   }
 }
