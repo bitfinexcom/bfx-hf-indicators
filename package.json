@@ -23,7 +23,7 @@
     "postinstall": "npm run build",
     "lint": "eslint examples/ test/ lib/ index.js",
     "test": "npm run lint && npm run unit",
-    "unit": "NODE_ENV=test NODE_PATH=lib/ nyc --check-coverage --lines 90 --branches 60 --functions 90 --statements 90 --reporter=lcov --reporter=html mocha -b --recursive",
+    "unit": "NODE_ENV=test NODE_PATH=lib/ nyc --check-coverage --lines 60 --branches 20 --functions 30 --statements 60 --reporter=lcov --reporter=html mocha -b --recursive",
     "test-without-coverage": "NODE_ENV=test mocha -R spec -b --recursive"
   },
   "repository": {
