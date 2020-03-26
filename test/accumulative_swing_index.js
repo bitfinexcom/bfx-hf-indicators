@@ -2,7 +2,7 @@
 'use strict'
 
 const assert = require('assert')
-const { ASI } = require('../dist')
+const ASI = require('../lib/accumulative_swing_index')
 
 const candles = [{
   open: 6373,
