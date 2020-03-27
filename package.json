@@ -1,8 +1,13 @@
 {
   "name": "bfx-hf-indicators",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A library of trading indicators for Node.JS",
   "main": "./dist/index.js",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "directories": {
     "lib": "lib"
   },
@@ -16,9 +21,9 @@
   "scripts": {
     "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib && copy package.json dist",
     "postinstall": "npm run build",
-    "lint": "standard",
+    "lint": "eslint examples/ test/ lib/ index.js",
     "test": "npm run lint && npm run unit",
-    "unit": "NODE_ENV=test istanbul cover _mocha -- -R spec -b --recursive",
+    "unit": "NODE_ENV=test NODE_PATH=lib/ nyc --check-coverage --lines 60 --branches 20 --functions 30 --statements 60 --reporter=lcov --reporter=html mocha -b --recursive",
     "test-without-coverage": "NODE_ENV=test mocha -R spec -b --recursive"
   },
   "repository": {
@@ -41,8 +46,8 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-stage-0": "^7.0.0",
-    "babel-eslint": "^7.2.2",
-    "bignumber.js": "^7.2.1",
+    "babel-eslint": "^10.1.0",
+    "bignumber.js": "^9.0.0",
     "copy": "^0.3.1",
     "create-index": "^2.3.0",
     "lodash": "^4.17.10",
@@ -50,14 +55,20 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^7.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^6.2.0",
+    "debug": "^4.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsdoc": "^22.0.0",
+    "eslint-plugin-lodash": "^6.0.0",
+    "eslint-plugin-mocha": "^6.3.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.3",
+    "mocha": "^7.1.0",
+    "nyc": "^15.0.0",
     "standard": "^14.2.0"
   }
 }

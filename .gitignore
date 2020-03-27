@@ -10,3 +10,6 @@ yarn-error.log
 coverage
 package-lock.json
 .env
+tags
+.nyc_output/
+coverage/
