@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/bitfinexcom/bfx-hf-indicators.svg?branch=master)](https://travis-ci.org/bitfinexcom/bfx-hf-indicators)
 
-This repo contains a collection of trading indicators implemented to support incremental updates, both from trade and candle data (depending on the indicator).
+This repo contains a collection of trading indicators implemented to support
+incremental updates, both from trade and candle data (depending on the
+indicator).
 
 ### Features
 * Average True Range
@@ -58,6 +60,7 @@ npm i --save bfx-hf-indicators
 ```
 
 ### Quickstart & Example
+
 ```js
 const { RSI } = require('bfx-hf-indicators')
 
@@ -78,7 +81,8 @@ const v = rsi.v() // query current RSI(14) value
 
 ### Docs
 
-[See `docs/usage.md`](/docs/usage.md) for an overview of the system, and the [`examples/`](/examples) folder for executable examples.
+API documentation can be found in [`docs/reference.md`](docs/reference.md), and
+examples in the [`examples`](examples) folder.
 
 ### Contributing
 
