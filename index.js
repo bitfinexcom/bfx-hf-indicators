@@ -50,64 +50,11 @@ const NATR = require('./lib/normalised_atr')
 
 /**
  * This module contains a collection of trading indicators implemented to
- * support incremental updates, both from trade and candle data (depending on
- * the indicator).
+ * support incremental updates, both from trade and candle data.
  *
- * ### Features
- * * {@link module:bfx-hf-indicators.ATR|Average True Range}
- * * {@link module:bfx-hf-indicators.NATR|Normalised Average True Range}
- * * {@link module:bfx-hf-indicators.Acceleration|Acceleration}
- * * {@link module:bfx-hf-indicators.AccumulationDistribution|Accumulation/Distribution}
- * * {@link module:bfx-hf-indicators.AccumulativeSwingIndex|Accumulative Swing Index}
- * * {@link module:bxf-hf-indicators.ALMA|Arnoud Legoux Moving Average}
- * * {@link module:bxf-hf-indicators.Aroon|Aroon}
- * * {@link module:bxf-hf-indicators.ADX|Average Directional Index}
- * * {@link module:bxf-hf-indicators.AO|Awesome Oscillator}
- * * {@link module:bxf-hf-indicators.BOP|Balance of Power}
- * * {@link module:bxf-hf-indicators.BollingerBands|Bollinger Bands}
- * * {@link module:bxf-hf-indicators.CMF|Chaikin Money Flow}
- * * {@link module:bxf-hf-indicators.ChaikinOsc|Chaikin Oscillator}
- * * {@link module:bxf-hf-indicators.ChandeMO|Chande Momentum Oscillator}
- * * {@link module:bxf-hf-indicators.CoppockCurve|Coppock Curve}
- * * {@link module:bxf-hf-indicators.DPO|Detrended Price Oscillator}
- * * {@link module:bxf-hf-indicators.DC|Donchian Channels}
- * * {@link module:bxf-hf-indicators.EOM|Ease of Movement}
- * * {@link module:bxf-hf-indicators.Envelope|Envelope}
- * * {@link module:bxf-hf-indicators.EMA|Exponential Moving Average}
- * * {@link module:bxf-hf-indicators.EMAVolume|Exponential Moving Average of Volume}
- * * {@link module:bxf-hf-indicators.KST|Know Sure Thing}
- * * {@link module:bxf-hf-indicators.MACD|MACD}
- * * {@link module:bxf-hf-indicators.MassIndex|Mass Index}
- * * {@link module:bxf-hf-indicators.Momentum|Momentum}
- * * {@link module:bxf-hf-indicators.NetVolume|Net Volume}
- * * {@link module:bxf-hf-indicators.OBV|On Balance Volume}
- * * {@link module:bxf-hf-indicators.PC|Price Channel}
- * * {@link module:bxf-hf-indicators.PPO|Price Oscillator}
- * * {@link module:bxf-hf-indicators.PVT|Price Volume Trend}
- * * {@link module:bxf-hf-indicators.RSI|RSI}
- * * {@link module:bxf-hf-indicators.ROC|Rate of Change}
- * * {@link module:bxf-hf-indicators.RVGI|Relative Vigor Index}
- * * {@link module:bxf-hf-indicators.RVI|Relative Volatility Index}
- * * {@link module:bxf-hf-indicators.SMA|Smoothed Moving Average}
- * * {@link module:bxf-hf-indicators.StdDeviation|Standard Deviation}
- * * {@link module:bxf-hf-indicators.Stochastic|Stochastic}
- * * {@link module:bxf-hf-indicators.StochasticRSI|Stochastic RSI}
- * * {@link module:bxf-hf-indicators.TRIX|TRIX}
- * * {@link module:bxf-hf-indicators.TSI|True Strength Index}
- * * {@link module:bxf-hf-indicators.VWAP|Volume Weighted Average Price}
- * * {@link module:bxf-hf-indicators.VO|Volume Oscillator}
- * * {@link module:bxf-hf-indicators.VWMA|Volume Weighted Moving Average}
- * * {@link module:bxf-hf-indicators.WMA|Weighted Moving Average}
- * * {@link module:bxf-hf-indicators.WilliamsR|Williams %R}
- *
- * ### Installation
- *
- * ```bash
- * npm i --save bfx-hf-indicators
- * ```
- *
- * ### Quickstart & Example
- * ```js
+ * @license Apache-2.0
+ * @module bfx-hf-indicators
+ * @example
  * const { RSI } = require('bfx-hf-indicators')
  *
  * const rsi = new RSI([14])
@@ -123,10 +70,6 @@ const NATR = require('./lib/normalised_atr')
  * rsi.add(13952)
  *
  * const v = rsi.v() // query current RSI(14) value
- * ```
- *
- * @license Apache-2.0
- * @module bfx-hf-indicators
  */
 
 module.exports = {

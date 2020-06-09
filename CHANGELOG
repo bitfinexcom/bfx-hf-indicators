@@ -1,3 +1,8 @@
+# 2.0.5
+- meta: bump deps
+- meta: normalize eslint config
+- refactor: improve doclets
+
 # 2.0.4
 - meta: update dependencies + eslint config, switch to nyc for coverage
 

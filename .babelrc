@@ -1,8 +1,13 @@
 {
 	"presets": [
-		"@babel/env"
+    ["@babel/preset-env", {
+      "targets": {
+        "node": "8.3.0"
+      }
+    }]
 	],
 	"plugins": [
-		"@babel/transform-regenerator"
+		"@babel/plugin-transform-regenerator",
+		"@babel/plugin-proposal-object-rest-spread"
 	]
 }
