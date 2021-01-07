@@ -37,7 +37,7 @@
     "build-meta": "./node_modules/.bin/copy package.json ./dist",
     "build": "yarn build-index && yarn build-lib && yarn build-meta && yarn build-docs",
     "prepublish": "yarn build",
-    "release": "yarn build && yarn update-version && git push origin master --follow-tags && yarn publish"
+    "release": "yarn build && yarn update-version && git push origin master --follow-tags"
   },
   "repository": {
     "type": "git",
