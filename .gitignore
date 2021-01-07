@@ -13,3 +13,4 @@ package-lock.json
 tags
 .nyc_output/
 coverage/
+yarn.lock
