@@ -1,7 +1,14 @@
-# 2.0.5
-- meta: bump deps
-- meta: normalize eslint config
-- refactor: improve doclets
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.0.5](https://github.com/bitfinexcom/bfx-hf-indicators/compare/v2.0.3...v2.0.5) (2021-01-07)
+
+
+### Bug Fixes
+
+* bump deps to fix babel build in consumer projects, polish docs ([81af49d](https://github.com/bitfinexcom/bfx-hf-indicators/commit/81af49d58eaa43ae481c85440a014351946a9d6b))
+* remove manifest from eslint check, parse fails ([0418ec1](https://github.com/bitfinexcom/bfx-hf-indicators/commit/0418ec1d9e063cbd20b34c0b1a4e7e0dd707a770))
 
 # 2.0.4
 - meta: update dependencies + eslint config, switch to nyc for coverage
