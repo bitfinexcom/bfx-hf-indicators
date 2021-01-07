@@ -24,7 +24,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "yarn lint && yarn unit",
-    "lint": "./node_modules/.bin/eslint package.json '*.js' lib test examples",
+    "lint": "./node_modules/.bin/eslint '*.js' lib test examples",
     "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive test",
     "update-deps": "./node_modules/.bin/updates -u -g -c",
     "update-version": "./node_modules/.bin/standard-version",
