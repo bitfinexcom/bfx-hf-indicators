@@ -48,6 +48,30 @@ const TRIX = require('./lib/trix')
 const EMAVolume = require('./lib/ema_vol')
 const NATR = require('./lib/normalised_atr')
 
+/**
+ * This module contains a collection of trading indicators implemented to
+ * support incremental updates, both from trade and candle data.
+ *
+ * @license Apache-2.0
+ * @module bfx-hf-indicators
+ * @example
+ * const { RSI } = require('bfx-hf-indicators')
+ *
+ * const rsi = new RSI([14])
+ *
+ * rsi.add(14000)
+ * rsi.add(14010)
+ * rsi.add(14025)
+ * rsi.add(14035)
+ * // ...
+ * // 8 more data points
+ * // ...
+ * rsi.add(13998)
+ * rsi.add(13952)
+ *
+ * const v = rsi.v() // query current RSI(14) value
+ */
+
 module.exports = {
   Indicator,
   SMA,

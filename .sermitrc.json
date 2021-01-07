@@ -1,0 +1,36 @@
+{
+  "template": {
+    "name": "serve-markdown-it-template-default",
+    "config": {
+      "maxWidth": "960xp",
+      "headerBar": true,
+      "settingsBar": true,
+      "dataTable": false
+    }
+  },
+  "markdownIt": {
+    "plugins": [
+      {
+        "name": "markdown-it-wikilinks"
+      },
+      {
+        "name": "markdown-it-smartarrows"
+      },
+      {
+        "name": "markdown-it-anchor",
+        "config": {
+          "permalink": true,
+          "permalinkBefore": true,
+          "permalinkSymbol": "§"
+        }
+      },
+      {
+        "name": "markdown-it-highlightjs",
+        "config": {
+          "auto": true,
+          "code": true
+        }
+      }
+    ]
+  }
+}
