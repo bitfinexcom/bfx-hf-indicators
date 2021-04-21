@@ -1,0 +1,6 @@
+.github
+examples
+test
+*.tgz
+.travis.yml
+.babelrc
