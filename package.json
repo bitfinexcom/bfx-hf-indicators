@@ -14,7 +14,7 @@
   ],
   "license": "Apache-2.0",
   "scripts": {
-    "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib && copy package.json dist",
+    "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib",
     "prepublishOnly": "npm run build",
     "lint": "standard examples/ test/ lib/ index.js",
     "test": "npm run lint && npm run unit",
@@ -42,7 +42,6 @@
     "@babel/preset-stage-0": "^7.0.0",
     "babel-eslint": "^10.1.0",
     "bignumber.js": "^9.0.0",
-    "copy": "^0.3.1",
     "create-index": "^2.3.0",
     "lodash": "^4.17.10",
     "sprintf-js": "^1.1.1"
