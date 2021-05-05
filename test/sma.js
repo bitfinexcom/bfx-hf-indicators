@@ -20,6 +20,11 @@ describe('Simple Moving Average(SMA)', () => {
     assert.deepStrictEqual(sma._p, 5)
   })
 
+  it('returns null when no values are added yet', () => {
+    const sma = new SMA(smaPeriod)
+    assert.deepStrictEqual(sma.v(), null)
+  })
+
   it('calculates sma based on close price properly', () => {
     const sma = new SMA(smaPeriod)
     candles.forEach(c => sma.add(c.close))
@@ -47,5 +52,28 @@ describe('Simple Moving Average(SMA)', () => {
     candles.forEach(c => sma.add(c.open))
     sma.update(6600.4)
     assert.deepStrictEqual(sma.v(), 6451.86)
+  })
+
+  it('returns sma as null if the given time period is less than the provided candles', () => {
+    const sma = new SMA([candles.length + 1])
+    candles.forEach(c => sma.add(c.open))
+    assert.deepStrictEqual(sma.v(), null)
+  })
+
+  it('calculates sma properly when number of candles provided are same as the time period', () => {
+    const sma = new SMA([candles.length])
+    candles.forEach(c => sma.add(c.high))
+    assert.deepStrictEqual(sma.v(), 6412.3)
+  })
+
+  it('updates the buffer and returns null if the given time period is less than the provided candles', () => {
+    const sma = new SMA([2])
+    const candlePriceOpen = 6600
+    const updatedCandlePrice = 6601
+    sma.add(candlePriceOpen)
+    assert.deepStrictEqual(sma._buffer, [candlePriceOpen])
+    sma.update(updatedCandlePrice)
+    assert.deepStrictEqual(sma._buffer, [updatedCandlePrice])
+    assert.deepStrictEqual(sma.v(), null)
   })
 })
