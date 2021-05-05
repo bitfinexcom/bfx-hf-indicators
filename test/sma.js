@@ -11,7 +11,7 @@ const candles = [
   { open: 6390.1, high: 6400, low: 6376, close: 6380 },
   { open: 6380, high: 6380, low: 6380, close: 6380 },
   { open: 6480, high: 6490.1, low: 6375, close: 6382.1 },
-  { open: 6382.1, high: 6418.9, low: 6377, close: 6390 },
+  { open: 6382.1, high: 6418.9, low: 6377, close: 6390 }
 ]
 
 describe('Simple Moving Average(SMA)', () => {
@@ -46,7 +46,7 @@ describe('Simple Moving Average(SMA)', () => {
     assert.deepStrictEqual(sma.v(), 6452.06)
   })
 
-  //Handles float isssues
+  // Handles float isssues
   it('handles float issues properly', () => {
     const sma = new SMA(smaPeriod)
     candles.forEach(c => sma.add(c.open))

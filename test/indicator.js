@@ -6,7 +6,7 @@ const Indicator = require('../lib/indicator')
 
 const downtrendValues = [54852.38, 54793.4808, 54750.8376]
 const uptrendValues = [54360.8860, 54375.9976, 54445.9981]
-const indicatorValues = [1,2,3,4,5]
+const indicatorValues = [1, 2, 3, 4, 5]
 
 const args = {
   id: 'indicator',
