@@ -42,14 +42,14 @@ describe('Exponential Moving Average(EMA)', () => {
   it('calculates ema based on close price properly', () => {
     const ema = new EMA(emaPeriod)
     candles.forEach(c => ema.add(c.close))
-    assert.deepStrictEqual(ema.v(), 6386.15)
+    assert.deepStrictEqual(ema.v().toFixed(3), '6386.383')
   })
 
   it('empties the buffer and ema values on reset', () => {
     const ema = new EMA(emaPeriod)
     candles.forEach(c => ema.add(c.close))
-    assert.deepStrictEqual(ema.v(), 6386.15)
-    assert.deepStrictEqual(ema._buffer.length, 2)
+    assert.deepStrictEqual(ema.v().toFixed(3), '6386.383')
+    assert.deepStrictEqual(ema._buffer.length, 3)
     assert.deepStrictEqual(ema._values.length, 2)
     ema.reset()
     assert.deepStrictEqual(ema._buffer.length, 0)
@@ -65,15 +65,15 @@ describe('Exponential Moving Average(EMA)', () => {
   it('calculates ema properly when number of candles provided are same as the ema period', () => {
     const ema = new EMA([candles.length])
     candles.forEach(c => ema.add(c.high))
-    assert.deepStrictEqual(ema.v(), 6389.812)
+    assert.deepStrictEqual(ema.v(), 6389.675)
   })
 
   it('calculates ema properly based on the updated value', () => {
     const ema = new EMA(emaPeriod)
     candles.forEach(c => ema.add(c.high))
-    assert.deepStrictEqual(ema.v(), 6391.575)
+    assert.deepStrictEqual(ema.v().toFixed(3), '6393.117')
     ema.update(6450)
-    assert.deepStrictEqual(ema.v(), 6416.575)
+    assert.deepStrictEqual(ema.v().toFixed(3), '6418.117')
   })
 
   it('updates the buffer and returns null if the given time period is less than the provided candles', () => {
@@ -91,6 +91,6 @@ describe('Exponential Moving Average(EMA)', () => {
     const ema = new EMA([candles.length])
     candles.forEach(c => ema.add(c.high))
     ema.update(6420)
-    assert.deepStrictEqual(ema.v(), 6397.812)
+    assert.deepStrictEqual(ema.v(), 6394.675)
   })
 })
