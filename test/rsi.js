@@ -64,9 +64,9 @@ describe('RSI', () => {
   })
 
   it('calculates with period 12', () => {
-    const rsi = new RSI([12]);
+    const rsi = new RSI([12])
     prices.forEach(price => rsi.add(price))
 
     assert.strictEqual(rsi.v(), 45.42827710929203)
-  });
+  })
 })
