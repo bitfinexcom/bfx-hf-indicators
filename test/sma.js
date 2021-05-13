@@ -31,11 +31,20 @@ describe('Simple Moving Average(SMA)', () => {
     assert.deepStrictEqual(sma.v(), 6381)
   })
 
+  it('checks if the indicator is seeded', () => {
+    const sma = new SMA(smaPeriod)
+    assert.ok(!sma.isSeeded(), 'should not have seeded the indicator')
+    sma.add(100)
+    assert.ok(sma.isSeeded(), 'should have seeded the indicator')
+    sma.reset()
+    assert.ok(!sma.isSeeded(), 'should have cleared the seeded values in indicator after reset')
+  })
+
   it('empties the buffer on reset', () => {
     const sma = new SMA(smaPeriod)
     sma.add(candles[0].close)
     sma.reset()
-    assert.deepStrictEqual(sma._buffer.length, 0)
+    assert.deepStrictEqual(sma.bl(), 0)
   })
 
   it('calculates sma based on the updated value', () => {
