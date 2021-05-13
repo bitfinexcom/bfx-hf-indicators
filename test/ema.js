@@ -45,15 +45,24 @@ describe('Exponential Moving Average(EMA)', () => {
     assert.deepStrictEqual(ema.v().toFixed(3), '6386.383')
   })
 
+  it('checks if the indicator is seeded', () => {
+    const ema = new EMA(emaPeriod)
+    assert.ok(!ema.isSeeded(), 'should not have seeded the indicator')
+    ema.add(100)
+    assert.ok(ema.isSeeded(), 'should have seeded the indicator')
+    ema.reset()
+    assert.ok(!ema.isSeeded(), 'should have cleared the seeded values in indicator after reset')
+  })
+
   it('empties the buffer and ema values on reset', () => {
     const ema = new EMA(emaPeriod)
     candles.forEach(c => ema.add(c.close))
     assert.deepStrictEqual(ema.v().toFixed(3), '6386.383')
-    assert.deepStrictEqual(ema._buffer.length, 3)
-    assert.deepStrictEqual(ema._values.length, 2)
+    assert.deepStrictEqual(ema.bl(), 3)
+    assert.deepStrictEqual(ema.l(), 2)
     ema.reset()
-    assert.deepStrictEqual(ema._buffer.length, 0)
-    assert.deepStrictEqual(ema._values.length, 0)
+    assert.deepStrictEqual(ema.bl(), 0)
+    assert.deepStrictEqual(ema.l(), 0)
   })
 
   it('returns ema as null if the given time period is less than the provided candles', () => {
