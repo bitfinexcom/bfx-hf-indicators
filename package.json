@@ -14,7 +14,6 @@
   ],
   "license": "Apache-2.0",
   "scripts": {
-    "postinstall": "npm run build",
     "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib",
     "prepublishOnly": "npm run build",
     "lint": "standard examples/ test/ lib/ index.js",
