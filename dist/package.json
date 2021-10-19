@@ -1,0 +1,55 @@
+{
+  "name": "bfx-hf-indicators",
+  "version": "2.0.4",
+  "description": "A library of trading indicators for Node.JS",
+  "main": "./dist/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "author": "Bitfinex",
+  "contributors": [
+    "Cris Mihalache <cris.m@bitfinex.com> (https://www.bitfinex.com)",
+    "Paolo Ardoino <paolo@bitfinex.com> (https://www.bitfinex.com)",
+    "Jacob Plaster <jacob.plaster@bitfinex.com> (https://www.bitfinex.com)"
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib && copy package.json dist",
+    "postinstall": "npm run build",
+    "lint": "standard examples/ test/ lib/ index.js",
+    "test": "npm run lint && npm run unit",
+    "unit": "NODE_ENV=test mocha -R spec -b --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitfinexcom/bfx-hf-indicators.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bitfinexcom/bfx-hf-indicators/issues"
+  },
+  "keywords": [
+    "honey framework",
+    "bitfinex",
+    "bitcoin",
+    "BTC"
+  ],
+  "dependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-transform-regenerator": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-stage-0": "^7.0.0",
+    "babel-eslint": "^10.1.0",
+    "bignumber.js": "^9.0.0",
+    "copy": "^0.3.1",
+    "create-index": "^2.3.0",
+    "lodash": "^4.17.10",
+    "sprintf-js": "^1.1.1"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1",
+    "mocha": "^7.1.0",
+    "standard": "^14.2.0"
+  }
+}
