@@ -1,6 +1,6 @@
 {
   "name": "bfx-hf-indicators",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "description": "A library of trading indicators for Node.JS",
   "main": "./dist/index.js",
   "directories": {
@@ -14,6 +14,7 @@
   ],
   "license": "Apache-2.0",
   "scripts": {
+    "postinstall": "npm run build",
     "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib",
     "prepublishOnly": "npm run build",
     "lint": "standard examples/ test/ lib/ index.js",
