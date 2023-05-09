@@ -1,46 +1,38 @@
 'use strict';
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 var _sum = require('lodash/sum');
-
 var _last = require('lodash/last');
-
 var _isEmpty = require('lodash/isEmpty');
-
 var _isFinite = require('lodash/isFinite');
-
 var _isString = require('lodash/isString');
-
 var _require = require('sprintf-js'),
-    sprintf = _require.sprintf;
-
+  sprintf = _require.sprintf;
 var Indicator = /*#__PURE__*/function () {
   function Indicator() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        id = _ref.id,
-        _ref$name = _ref.name,
-        name = _ref$name === void 0 ? '' : _ref$name,
-        _ref$seedPeriod = _ref.seedPeriod,
-        seedPeriod = _ref$seedPeriod === void 0 ? 0 : _ref$seedPeriod,
-        _ref$args = _ref.args,
-        args = _ref$args === void 0 ? [] : _ref$args,
-        _ref$dataType = _ref.dataType,
-        dataType = _ref$dataType === void 0 ? '*' : _ref$dataType,
-        _ref$dataKey = _ref.dataKey,
-        dataKey = _ref$dataKey === void 0 ? 'close' : _ref$dataKey;
-
+      id = _ref.id,
+      _ref$name = _ref.name,
+      name = _ref$name === void 0 ? '' : _ref$name,
+      _ref$seedPeriod = _ref.seedPeriod,
+      seedPeriod = _ref$seedPeriod === void 0 ? 0 : _ref$seedPeriod,
+      _ref$args = _ref.args,
+      args = _ref$args === void 0 ? [] : _ref$args,
+      _ref$dataType = _ref.dataType,
+      dataType = _ref$dataType === void 0 ? '*' : _ref$dataType,
+      _ref$dataKey = _ref.dataKey,
+      dataKey = _ref$dataKey === void 0 ? 'close' : _ref$dataKey;
     _classCallCheck(this, Indicator);
-
     if (!_isString(id)) {
       throw new Error("string id required (".concat(id, ")"));
-    } // Copy metadata
+    }
 
-
+    // Copy metadata
     this.ui = this.constructor.ui;
     this.argsDef = this.constructor.args;
     this.label = this.constructor.label;
@@ -53,7 +45,6 @@ var Indicator = /*#__PURE__*/function () {
     this._dataKey = dataKey;
     this.reset();
   }
-
   _createClass(Indicator, [{
     key: "getName",
     value: function getName() {
@@ -80,7 +71,6 @@ var Indicator = /*#__PURE__*/function () {
       if (_isEmpty(this._values)) {
         return this.add(v);
       }
-
       this._values[this._values.length - 1] = v;
       return v;
     }
@@ -88,7 +78,6 @@ var Indicator = /*#__PURE__*/function () {
     key: "add",
     value: function add(v) {
       this._values.push(v);
-
       return v;
     }
   }, {
@@ -130,7 +119,6 @@ var Indicator = /*#__PURE__*/function () {
       if (this.l() < 2) {
         return false;
       }
-
       var v = this.v();
       var prev = this.prev();
       return v >= target && prev <= target || v <= target && prev >= target;
@@ -146,10 +134,10 @@ var Indicator = /*#__PURE__*/function () {
     value: function ready() {
       return _isFinite(this.v());
     }
+
     /**
      * @returns {object} data
      */
-
   }, {
     key: "serialize",
     value: function serialize() {
@@ -161,8 +149,6 @@ var Indicator = /*#__PURE__*/function () {
       };
     }
   }]);
-
   return Indicator;
 }();
-
 module.exports = Indicator;
