@@ -8,6 +8,8 @@ function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefine
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var _isFunction = require('lodash/isFunction');
 var _isNaN = require('lodash/isNaN');
+var _reduce = require('lodash/reduce');
+var _toLower = require('lodash/toLower');
 function getSinglePlotIndicator(_ref) {
   var indicator = _ref.indicator,
     index = _ref.index,
@@ -18,14 +20,13 @@ function getSinglePlotIndicator(_ref) {
     _indicator$ = _slicedToArray(_indicator[2], 1),
     color = _indicator$[0],
     name = _indicator[3];
-  var _args = _slicedToArray(args, 2),
-    period = _args[0],
-    _args$ = _args[1],
-    source = _args$ === void 0 ? 'close' : _args$;
-  var inputs = {
-    period: period,
-    source: source
-  };
+  var inputs = _reduce(IndicatorConstructor.args, function (acc, _ref2, index) {
+    var label = _ref2.label;
+    acc[_toLower(label)] = args[index];
+    return acc;
+  }, {});
+  var _inputs$source = inputs.source,
+    source = _inputs$source === void 0 ? 'close' : _inputs$source;
   var instance = new IndicatorConstructor(args);
   var _IndicatorConstructor = IndicatorConstructor.ui,
     _IndicatorConstructor2 = _IndicatorConstructor.isPriceStudy,
@@ -88,10 +89,11 @@ function getSinglePlotIndicator(_ref) {
           price = {
             high: PineJS.Std.high(this._context),
             low: PineJS.Std.low(this._context),
+            open: PineJS.Std.open(this._context),
             close: PineJS.Std.close(this._context),
             volume: PineJS.Std.volume(this._context)
           };
-          if (_isNaN(price.high) || _isNaN(price.low) || _isNaN(price.close) || _isNaN(price.volume)) {
+          if (_isNaN(price.high) || _isNaN(price.low) || _isNaN(price.close) || _isNaN(price.volume) || _isNaN(price.open)) {
             return [NaN];
           }
         } else {

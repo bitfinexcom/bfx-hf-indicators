@@ -1,6 +1,12 @@
 'use strict';
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -15,6 +21,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _isNaN = require('lodash/isNaN');
 var SMA = require('./sma');
 var Indicator = require('./indicator');
 var AO = /*#__PURE__*/function (_Indicator) {
@@ -82,4 +89,131 @@ AO.ui = {
   type: 'line'
 };
 AO.args = [];
+AO.getTradingViewConfig = function (_ref) {
+  var indicator = _ref.indicator,
+    index = _ref.index,
+    PineJS = _ref.PineJS;
+  var _indicator = _slicedToArray(indicator, 4),
+    name = _indicator[3];
+  var AOInstance = new AO();
+  return {
+    name: name,
+    metainfo: {
+      id: "".concat(name, "@tv-basicstudies-").concat(index),
+      name: name,
+      _metainfoVersion: 0,
+      description: name,
+      shortDescription: name,
+      is_hidden_study: false,
+      is_price_study: false,
+      isCustomIndicator: true,
+      defaults: {
+        styles: {
+          plot_0: {
+            linestyle: 0,
+            linewidth: 1,
+            plottype: 5,
+            transparency: 0,
+            visible: true
+          }
+        },
+        palettes: {
+          palette_0: {
+            colors: {
+              0: {
+                color: '#22ab94',
+                width: 1,
+                style: 0
+              },
+              1: {
+                color: '#ace5dc',
+                width: 1,
+                style: 0
+              },
+              2: {
+                color: '#fccbcd',
+                width: 1,
+                style: 0
+              },
+              3: {
+                color: '#ff5252',
+                width: 1,
+                style: 0
+              }
+            }
+          }
+        },
+        inputs: {}
+      },
+      plots: [{
+        id: 'plot_0',
+        type: 'line'
+      }, {
+        id: 'plot_1',
+        palette: 'palette_0',
+        target: 'plot_0',
+        type: 'colorer'
+      }],
+      styles: {
+        plot_0: {
+          title: 'Histogram',
+          histogramBase: 0
+        }
+      },
+      palettes: {
+        palette_0: {
+          colors: {
+            0: {
+              name: 'Color 0'
+            },
+            1: {
+              name: 'Color 1'
+            },
+            2: {
+              name: 'Color 2'
+            },
+            3: {
+              name: 'Color 3'
+            }
+          }
+        }
+      },
+      inputs: [],
+      format: {
+        type: 'inherit'
+      }
+    },
+    constructor: function constructor() {
+      this.lastUpdatedTime = null;
+      this.calculateColumnColor = function (e) {
+        var t = e > 0 ? 1 : 3;
+        var s = PineJS.Std.change(this._context.new_var(e));
+        return t - (PineJS.Std.le(s, 0) ? 0 : 1);
+      };
+      this.main = function (ctx, inputCallback) {
+        this._context = ctx;
+        this._input = inputCallback;
+        var price = {
+          high: PineJS.Std.high(this._context),
+          low: PineJS.Std.low(this._context),
+          open: PineJS.Std.open(this._context),
+          close: PineJS.Std.close(this._context),
+          volume: PineJS.Std.volume(this._context)
+        };
+        if (_isNaN(price.high) || _isNaN(price.low) || _isNaN(price.close) || _isNaN(price.volume) || _isNaN(price.open)) {
+          return [NaN];
+        }
+        var currentTime = PineJS.Std.updatetime(this._context);
+        if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
+          var _v = AOInstance.update(price);
+          return [_v, this.calculateColumnColor(_v)];
+        }
+        this.lastUpdatedTime = currentTime;
+        var v = AOInstance.add(price);
+        console.log(v);
+        return [v, this.calculateColumnColor(v)];
+      };
+    }
+  };
+};
 module.exports = AO;

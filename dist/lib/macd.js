@@ -23,6 +23,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 var _isObject = require('lodash/isObject');
 var _isNaN = require('lodash/isNaN');
+var _last = require('lodash/last');
 var Indicator = require('./indicator');
 var EMA = require('./ema');
 var MACD = /*#__PURE__*/function (_Indicator) {
@@ -124,11 +125,19 @@ MACD.getTradingViewConfig = function (_ref) {
     col1 = _indicator$[0],
     col2 = _indicator$[1],
     name = _indicator[3];
-  var _args2 = _slicedToArray(args, 4),
+  var _args2 = _slicedToArray(args, 2),
     fastMA = _args2[0],
-    slowMA = _args2[1],
-    source = _args2[2],
-    signalMA = _args2[3];
+    slowMA = _args2[1];
+  var signalMA = _last(args);
+  var inputs = {
+    fastMA: fastMA,
+    slowMA: slowMA,
+    signalMA: signalMA
+  };
+  console.log({
+    args: args,
+    inputs: inputs
+  });
   var MACDInstance = new MACD([fastMA, slowMA, signalMA]);
   return {
     name: name,
@@ -193,12 +202,7 @@ MACD.getTradingViewConfig = function (_ref) {
             }
           }
         },
-        inputs: {
-          fastMA: fastMA,
-          slowMA: slowMA,
-          source: source,
-          signalMA: signalMA
-        }
+        inputs: inputs
       },
       plots: [{
         id: 'plot_0',

@@ -234,13 +234,13 @@ Aroon.getTradingViewConfig = function (_ref) {
             var _AroonInstance$update = AroonInstance.update(closePrice),
               _up = _AroonInstance$update.up,
               _down = _AroonInstance$update.down;
-            return ["".concat(_up, "%"), "".concat(_down, "%")];
+            return [_up, _down];
           }
           this.lastUpdatedTime = currentTime;
           var _AroonInstance$add = AroonInstance.add(closePrice),
             up = _AroonInstance$add.up,
             down = _AroonInstance$add.down;
-          return ["".concat(up, "%"), "".concat(down, "%")];
+          return [up, down];
         }
         return [0, 0];
       };
