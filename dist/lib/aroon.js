@@ -23,6 +23,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 var _isFinite = require('lodash/isFinite');
 var _isEmpty = require('lodash/isEmpty');
+var _isNaN = require('lodash/isNaN');
 var _max = require('lodash/max');
 var _min = require('lodash/min');
 var _sum = require('lodash/sum');
@@ -61,7 +62,10 @@ var Aroon = /*#__PURE__*/function (_Indicator) {
         this._buffer[this._buffer.length - 1] = value;
       }
       if (this._buffer.length < this._p) {
-        return;
+        return {
+          up: 0,
+          down: 0
+        };
       }
       var max = _max(this._buffer);
       var min = _min(this._buffer);
@@ -83,7 +87,10 @@ var Aroon = /*#__PURE__*/function (_Indicator) {
       if (this._buffer.length > this._p) {
         this._buffer.splice(0, 1);
       } else if (this._buffer.length < this._p) {
-        return;
+        return {
+          up: 0,
+          down: 0
+        };
       }
       var max = _max(this._buffer);
       var min = _min(this._buffer);
@@ -137,10 +144,107 @@ Aroon.humanLabel = 'Aroon';
 Aroon.ui = {
   position: 'external',
   type: 'lines',
-  lines: ['up', 'down']
+  lines: ['up', 'down'],
+  isPriceStudy: false,
+  useCandles: false
 };
 Aroon.args = [{
   label: 'Period',
   "default": 14
 }];
+Aroon.getTradingViewConfig = function (_ref) {
+  var indicator = _ref.indicator,
+    index = _ref.index,
+    PineJS = _ref.PineJS;
+  var _indicator = _slicedToArray(indicator, 4),
+    args = _indicator[1],
+    _indicator$ = _slicedToArray(_indicator[2], 2),
+    col1 = _indicator$[0],
+    col2 = _indicator$[1],
+    name = _indicator[3];
+  var _args2 = _slicedToArray(args, 1),
+    period = _args2[0];
+  var AroonInstance = new Aroon(args);
+  return {
+    name: name,
+    metainfo: {
+      id: "".concat(name, "@tv-basicstudies-").concat(index),
+      name: name,
+      _metainfoVersion: 0,
+      description: name,
+      shortDescription: name,
+      is_hidden_study: false,
+      is_price_study: false,
+      isCustomIndicator: true,
+      defaults: {
+        styles: {
+          plot_0: {
+            linestyle: 0,
+            linewidth: 2,
+            plottype: 0,
+            transparency: 0,
+            color: col1
+          },
+          plot_1: {
+            linestyle: 0,
+            linewidth: 2,
+            plottype: 0,
+            transparency: 0,
+            visible: true,
+            color: col2
+          }
+        },
+        inputs: {
+          period: period
+        }
+      },
+      plots: [{
+        id: 'plot_0',
+        type: 'line'
+      }, {
+        id: 'plot_1',
+        type: 'line'
+      }],
+      styles: {
+        plot_0: {
+          title: 'Up',
+          histogramBase: 0
+        },
+        plot_1: {
+          title: 'Down',
+          histogramBase: 0
+        }
+      },
+      inputs: [],
+      format: {
+        precision: 2,
+        type: 'percent'
+      }
+    },
+    constructor: function constructor() {
+      this.lastUpdatedTime = null;
+      this.main = function (ctx, inputCallback) {
+        this._context = ctx;
+        this._input = inputCallback;
+        var closePrice = PineJS.Std.close(this._context);
+        console.log(closePrice);
+        if (!_isNaN(closePrice)) {
+          var currentTime = PineJS.Std.updatetime(this._context);
+          if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
+            var _AroonInstance$update = AroonInstance.update(closePrice),
+              _up = _AroonInstance$update.up,
+              _down = _AroonInstance$update.down;
+            return ["".concat(_up, "%"), "".concat(_down, "%")];
+          }
+          this.lastUpdatedTime = currentTime;
+          var _AroonInstance$add = AroonInstance.add(closePrice),
+            up = _AroonInstance$add.up,
+            down = _AroonInstance$add.down;
+          return ["".concat(up, "%"), "".concat(down, "%")];
+        }
+        return [0, 0];
+      };
+    }
+  };
+};
 module.exports = Aroon;
