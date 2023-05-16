@@ -79,8 +79,8 @@ function prepareTradingViewIndicatorConfig(_ref) {
     acc[_toLower(label)] = args[index];
     return acc;
   }, {});
-  var _inputs$source = inputs.source,
-    source = _inputs$source === void 0 ? 'close' : _inputs$source;
+  var _inputs$candleKey = inputs['candle key'],
+    source = _inputs$candleKey === void 0 ? 'close' : _inputs$candleKey;
   var instance = new IndicatorConstructor(args);
   var _IndicatorConstructor = IndicatorConstructor.ui,
     position = _IndicatorConstructor.position,

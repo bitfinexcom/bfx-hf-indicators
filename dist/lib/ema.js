@@ -39,9 +39,8 @@ var EMA = /*#__PURE__*/function (_Indicator) {
     _this = _super.call(this, {
       args: args,
       id: EMA.id,
-      name: "EMA(".concat(period, ")"),
+      name: "EMA(".concat(period, " ").concat(dataKey, ")"),
       seedPeriod: period,
-      dataType: 'candle',
       dataKey: dataKey
     });
     _this._a = 2 / (period + 1);
