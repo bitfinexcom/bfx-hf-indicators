@@ -39,7 +39,7 @@ var ALMA = /*#__PURE__*/function (_Indicator) {
     _this = _super.call(this, {
       args: args,
       id: ALMA.id,
-      name: "ALMA(".concat(period, ", ").concat(offset, ", ").concat(sigma, ")"),
+      name: "ALMA(".concat(period, ", ").concat(offset, ", ").concat(sigma, " ").concat(dataKey, ")"),
       seedPeriod: period,
       dataType: 'candle',
       dataKey: dataKey

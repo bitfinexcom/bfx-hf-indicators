@@ -38,7 +38,7 @@ var WildersMA = /*#__PURE__*/function (_Indicator) {
     _this = _super.call(this, {
       args: args,
       id: WildersMA.id,
-      name: "Wilder MA(".concat(period, ")"),
+      name: "Wilder MA(".concat(period, " ").concat(dataKey, ")"),
       seedPeriod: period,
       dataType: 'candle',
       dataKey: dataKey
