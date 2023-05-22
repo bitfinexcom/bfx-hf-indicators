@@ -41,7 +41,6 @@ var ALMA = /*#__PURE__*/function (_Indicator) {
       id: ALMA.id,
       name: "ALMA(".concat(period, ", ").concat(offset, ", ").concat(sigma, " ").concat(dataKey, ")"),
       seedPeriod: period,
-      dataType: 'candle',
       dataKey: dataKey
     });
     _this._p = period;

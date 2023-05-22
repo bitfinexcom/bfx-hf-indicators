@@ -40,7 +40,6 @@ var WildersMA = /*#__PURE__*/function (_Indicator) {
       id: WildersMA.id,
       name: "Wilder MA(".concat(period, " ").concat(dataKey, ")"),
       seedPeriod: period,
-      dataType: 'candle',
       dataKey: dataKey
     });
     _this._a = new BigN(1).div(new BigN(period));

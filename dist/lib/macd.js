@@ -103,7 +103,8 @@ MACD.label = 'MACD';
 MACD.humanLabel = 'Moving Average Convergence Divergence';
 MACD.ui = {
   position: 'external',
-  type: 'macd'
+  type: 'macd',
+  lines: ['divergence', 'macd', 'signal']
 };
 MACD.args = [{
   label: 'Fast MA Period',
