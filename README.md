@@ -13,7 +13,6 @@ This repo contains a collection of trading indicators implemented to support inc
 * Arnoud Legoux Moving Average
 * Aroon
 * Average Directional Index
-* Awesome Oscillator
 * Balance of Power
 * Bollinger Bands
 * Chaikin Money Flow
@@ -28,12 +27,10 @@ This repo contains a collection of trading indicators implemented to support inc
 * EMA Volume
 * Know Sure Thing
 * MACD
-* Mass Index
 * Momentum
 * Net Volume
 * On Balance Volume
 * Price Channel
-* Price Oscillator
 * Price Volume Trend
 * RSI
 * Rate of Change
@@ -43,7 +40,6 @@ This repo contains a collection of trading indicators implemented to support inc
 * Standard Deviation
 * Stochastic
 * Stochastic RSI
-* TRIX
 * True Strength Index
 * VWAP
 * Volume Oscillator

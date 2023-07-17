@@ -16,17 +16,14 @@ const Aroon = require('./lib/aroon')
 const AccumDist = require('./lib/accumulation_distribution')
 const ASI = require('./lib/accumulative_swing_index')
 const ALMA = require('./lib/alma')
-const AO = require('./lib/awesome_oscillator')
 const ADX = require('./lib/average_directional_index')
 const BOP = require('./lib/balance_of_power')
-const PPO = require('./lib/price_oscillator')
 const RVGI = require('./lib/relative_vigor_index')
 const RVI = require('./lib/relative_volatility_index')
 const Stochastic = require('./lib/stochastic')
 const VO = require('./lib/volume_oscillator')
 const OBV = require('./lib/on_balance_volume')
 const PVT = require('./lib/price_volume_trend')
-const MassIndex = require('./lib/mass_index')
 const CMF = require('./lib/chaikin_money_flow')
 const DPO = require('./lib/detrended_price_oscillator')
 const PC = require('./lib/price_channel')
@@ -44,7 +41,6 @@ const WMA = require('./lib/wma')
 const VWAP = require('./lib/vwap')
 const DC = require('./lib/donchian_channels')
 const StochRSI = require('./lib/stochastic_rsi')
-const TRIX = require('./lib/trix')
 const EMAVolume = require('./lib/ema_vol')
 const NATR = require('./lib/normalised_atr')
 
@@ -66,17 +62,14 @@ module.exports = {
   AccumDist,
   ASI,
   ALMA,
-  AO,
   ADX,
   BOP,
-  PPO,
   RVGI,
   RVI,
   Stochastic,
   VO,
   OBV,
   PVT,
-  MassIndex,
   CMF,
   DPO,
   PC,
@@ -94,6 +87,5 @@ module.exports = {
   WMA,
   DC,
   StochRSI,
-  TRIX,
   EMAVolume
 }
