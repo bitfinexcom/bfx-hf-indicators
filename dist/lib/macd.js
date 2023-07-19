@@ -135,10 +135,6 @@ MACD.getTradingViewConfig = function (_ref) {
     slowMA: slowMA,
     signalMA: signalMA
   };
-  console.log({
-    args: args,
-    inputs: inputs
-  });
   var MACDInstance = new MACD([fastMA, slowMA, signalMA]);
   return {
     name: name,
@@ -268,7 +264,6 @@ MACD.getTradingViewConfig = function (_ref) {
         this._context = ctx;
         this._input = inputCallback;
         var closePrice = PineJS.Std.close(this._context);
-        console.log(closePrice);
         if (!_isNaN(closePrice)) {
           var currentTime = PineJS.Std.updatetime(this._context);
           if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {

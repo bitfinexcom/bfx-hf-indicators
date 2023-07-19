@@ -186,21 +186,10 @@ function prepareTradingViewIndicatorConfig(_ref) {
         var currentTime = PineJS.Std.updatetime(this._context);
         if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
           var _v = instance.update(price);
-          console.log('update', {
-            price: price,
-            source: source,
-            v: this.prepareLinesPosition(_v)
-          });
           return this.prepareLinesPosition(_v);
         }
         this.lastUpdatedTime = currentTime;
         var v = instance.add(price);
-        console.log('add', {
-          price: price,
-          source: source,
-          v: this.prepareLinesPosition(v),
-          instance: instance
-        });
         return this.prepareLinesPosition(v);
       };
     }
