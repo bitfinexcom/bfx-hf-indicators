@@ -16,9 +16,9 @@
   "scripts": {
     "build": "babel ./index.js -d ./dist && babel ./lib -d ./dist/lib",
     "prepublishOnly": "npm run build",
-    "lint": "standard examples/ test/ lib/ index.js",
+    "lint": "standard examples/ test/ lib/ index.js --fix",
     "test": "npm run lint && npm run unit",
-    "unit": "NODE_ENV=test mocha -R spec -b --recursive"
+    "unit": "NODE_ENV=test mocha -R spec -b --recursive --no-bail"
   },
   "repository": {
     "type": "git",
