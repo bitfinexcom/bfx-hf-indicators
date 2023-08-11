@@ -151,7 +151,7 @@ function prepareTradingViewIndicatorConfig(_ref) {
     constructor: function constructor() {
       this.lastUpdatedTime = null;
       this.memoizedIndicatorValues = {};
-      this.wasFirstCandle = false;
+      this.isFirstCandleReached = false;
       this.prepareLinesPosition = function (v) {
         if (isSinglePlot && !_isObject(v)) {
           return [v];
@@ -171,11 +171,11 @@ function prepareTradingViewIndicatorConfig(_ref) {
         if (currentTime < strategyStartTimestamp) {
           return;
         }
-        if (!this.wasFirstCandle) {
+        if (!this.isFirstCandleReached) {
           if (currentTime !== strategyStartTimestamp) {
             return;
           }
-          this.wasFirstCandle = true;
+          this.isFirstCandleReached = true;
         }
         var price;
         if (useCandles) {
