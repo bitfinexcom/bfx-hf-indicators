@@ -270,12 +270,16 @@ MACD.getTradingViewConfig = function (_ref) {
         if (_isNaN(closePrice)) {
           return [0, 0, 0, 0];
         }
-        var currentTime = PineJS.Std.updatetime(this._context);
-        if (currentTime < strategyStartTimestamp || this.isFirstCandleReached && currentTime === strategyStartTimestamp) {
+        var currentTime = PineJS.Std.time(this._context);
+
+        // Start calculation from the first candle, skip another candles
+        if (currentTime < strategyStartTimestamp) {
           return;
         }
         if (!this.isFirstCandleReached) {
-          console.log('first candle reached');
+          if (currentTime !== strategyStartTimestamp) {
+            return;
+          }
           this.isFirstCandleReached = true;
         }
         if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
@@ -290,7 +294,6 @@ MACD.getTradingViewConfig = function (_ref) {
         }
         var memoizedValue = this.memoizedIndicatorValues[currentTime];
         if (memoizedValue && memoizedValue.length === 4) {
-          console.log(memoizedValue, this.memoizedIndicatorValues, new Date(currentTime).toISOString());
           return memoizedValue;
         }
         var _MACDInstance$add = MACDInstance.add(closePrice),

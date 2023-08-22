@@ -16,6 +16,8 @@ var _isFunction = require('lodash/isFunction');
 var _isNaN = require('lodash/isNaN');
 var _reduce = require('lodash/reduce');
 var _toLower = require('lodash/toLower');
+var _map = require('lodash/map');
+var _some = require('lodash/some');
 var _forEach = require('lodash/forEach');
 var _capitalize = require('lodash/capitalize');
 var _isObject = require('lodash/isObject');
@@ -153,19 +155,45 @@ function prepareTradingViewIndicatorConfig(_ref) {
       this.memoizedIndicatorValues = {};
       this.isFirstCandleReached = false;
       this.prepareLinesPosition = function (v) {
-        if (isSinglePlot && !_isObject(v)) {
-          return [v];
+        if (!_isObject(v) || !lines) {
+          return [v || NaN];
         }
-        var linesPosition = [];
-        _forEach(lines, function (l) {
-          linesPosition.push(v[l]);
+        var linesPosition = _map(lines, function (l) {
+          return v[l];
         });
         return linesPosition;
+      };
+      this.getPriceFromContext = function () {
+        if (useCandles) {
+          var price = {
+            high: PineJS.Std.high(this._context),
+            low: PineJS.Std.low(this._context),
+            open: PineJS.Std.open(this._context),
+            close: PineJS.Std.close(this._context),
+            volume: PineJS.Std.volume(this._context)
+          };
+          if (_some(price, function (p) {
+            return _isNaN(p);
+          })) {
+            return NaN;
+          }
+          return price;
+        } else {
+          var studyFn = PineJS.Std[source];
+          if (!_isFunction(studyFn)) {
+            return NaN;
+          }
+          var _price = studyFn(this._context);
+          if (_isNaN(_price)) {
+            return NaN;
+          }
+          return _price;
+        }
       };
       this.main = function (ctx, inputCallback) {
         this._context = ctx;
         this._input = inputCallback;
-        var currentTime = PineJS.Std.updatetime(this._context);
+        var currentTime = PineJS.Std.time(this._context);
 
         // Start calculation from the first candle, skip another candles
         if (currentTime < strategyStartTimestamp) {
@@ -177,27 +205,9 @@ function prepareTradingViewIndicatorConfig(_ref) {
           }
           this.isFirstCandleReached = true;
         }
-        var price;
-        if (useCandles) {
-          price = {
-            high: PineJS.Std.high(this._context),
-            low: PineJS.Std.low(this._context),
-            open: PineJS.Std.open(this._context),
-            close: PineJS.Std.close(this._context),
-            volume: PineJS.Std.volume(this._context)
-          };
-          if (_isNaN(price.high) || _isNaN(price.low) || _isNaN(price.close) || _isNaN(price.volume) || _isNaN(price.open)) {
-            return this.prepareLinesPosition(NaN);
-          }
-        } else {
-          var studyFn = PineJS.Std[source];
-          if (!_isFunction(studyFn)) {
-            return this.prepareLinesPosition(NaN);
-          }
-          price = studyFn(this._context);
-          if (_isNaN(price)) {
-            return this.prepareLinesPosition(NaN);
-          }
+        var price = this.getPriceFromContext();
+        if (_isNaN(price)) {
+          return this.prepareLinesPosition(NaN);
         }
         if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
           var _v = instance.update(price);
@@ -205,8 +215,7 @@ function prepareTradingViewIndicatorConfig(_ref) {
           return this.prepareLinesPosition(_v);
         }
         var memoizedValue = this.memoizedIndicatorValues[currentTime];
-        var isExist = !_isUndefined(memoizedValue);
-        if (isExist) {
+        if (!_isUndefined(memoizedValue)) {
           return this.prepareLinesPosition(memoizedValue);
         }
         var v = instance.add(price);
