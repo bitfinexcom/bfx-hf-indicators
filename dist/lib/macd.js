@@ -119,7 +119,8 @@ MACD.args = [{
 MACD.getTradingViewConfig = function (_ref) {
   var indicator = _ref.indicator,
     index = _ref.index,
-    PineJS = _ref.PineJS;
+    PineJS = _ref.PineJS,
+    strategyStartTimestamp = _ref.strategyStartTimestamp;
   var _indicator = _slicedToArray(indicator, 4),
     args = _indicator[1],
     _indicator$ = _slicedToArray(_indicator[2], 2),
@@ -255,6 +256,8 @@ MACD.getTradingViewConfig = function (_ref) {
     },
     constructor: function constructor() {
       this.lastUpdatedTime = null;
+      this.memoizedIndicatorValues = {};
+      this.isFirstCandleReached = false;
       this.calculateColumnColor = function (e) {
         var t = e > 0 ? 1 : 3;
         var s = PineJS.Std.change(this._context.new_var(e));
@@ -264,23 +267,41 @@ MACD.getTradingViewConfig = function (_ref) {
         this._context = ctx;
         this._input = inputCallback;
         var closePrice = PineJS.Std.close(this._context);
-        if (!_isNaN(closePrice)) {
-          var currentTime = PineJS.Std.updatetime(this._context);
-          if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
-            var _MACDInstance$update = MACDInstance.update(closePrice),
-              _macd = _MACDInstance$update.macd,
-              _signal = _MACDInstance$update.signal,
-              _divergence = _MACDInstance$update.divergence;
-            return [_divergence, _macd, _signal, this.calculateColumnColor(_divergence)];
-          }
-          this.lastUpdatedTime = currentTime;
-          var _MACDInstance$add = MACDInstance.add(closePrice),
-            macd = _MACDInstance$add.macd,
-            signal = _MACDInstance$add.signal,
-            divergence = _MACDInstance$add.divergence;
-          return [divergence, macd, signal, this.calculateColumnColor(divergence)];
+        if (_isNaN(closePrice)) {
+          return [0, 0, 0, 0];
         }
-        return [0, 0, 0, 0];
+        var currentTime = PineJS.Std.updatetime(this._context);
+        if (currentTime < strategyStartTimestamp || this.isFirstCandleReached && currentTime === strategyStartTimestamp) {
+          return;
+        }
+        if (!this.isFirstCandleReached) {
+          console.log('first candle reached');
+          this.isFirstCandleReached = true;
+        }
+        if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
+          var _MACDInstance$update = MACDInstance.update(closePrice),
+            _macd = _MACDInstance$update.macd,
+            _signal = _MACDInstance$update.signal,
+            _divergence = _MACDInstance$update.divergence;
+          var _color = this.calculateColumnColor(_divergence);
+          var _indicatorValue = [_divergence, _macd, _signal, _color];
+          this.memoizedIndicatorValues[currentTime] = _indicatorValue;
+          return _indicatorValue;
+        }
+        var memoizedValue = this.memoizedIndicatorValues[currentTime];
+        if (memoizedValue && memoizedValue.length === 4) {
+          console.log(memoizedValue, this.memoizedIndicatorValues, new Date(currentTime).toISOString());
+          return memoizedValue;
+        }
+        var _MACDInstance$add = MACDInstance.add(closePrice),
+          macd = _MACDInstance$add.macd,
+          signal = _MACDInstance$add.signal,
+          divergence = _MACDInstance$add.divergence;
+        var color = this.calculateColumnColor(divergence);
+        this.lastUpdatedTime = currentTime;
+        var indicatorValue = [divergence, macd, signal, color];
+        this.memoizedIndicatorValues[currentTime] = indicatorValue;
+        return indicatorValue;
       };
     }
   };
