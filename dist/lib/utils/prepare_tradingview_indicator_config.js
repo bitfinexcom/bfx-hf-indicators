@@ -16,9 +16,12 @@ var _isFunction = require('lodash/isFunction');
 var _isNaN = require('lodash/isNaN');
 var _reduce = require('lodash/reduce');
 var _toLower = require('lodash/toLower');
+var _map = require('lodash/map');
+var _some = require('lodash/some');
 var _forEach = require('lodash/forEach');
 var _capitalize = require('lodash/capitalize');
 var _isObject = require('lodash/isObject');
+var _isUndefined = require('lodash/isUndefined');
 var PLOT_DEFAULT_STYLE = {
   linestyle: 0,
   linewidth: 2,
@@ -69,7 +72,8 @@ function prepareTradingViewIndicatorConfig(_ref) {
   var indicator = _ref.indicator,
     index = _ref.index,
     PineJS = _ref.PineJS,
-    IndicatorConstructor = _ref.IndicatorConstructor;
+    IndicatorConstructor = _ref.IndicatorConstructor,
+    strategyStartTimestamp = _ref.strategyStartTimestamp;
   var _indicator = _slicedToArray(indicator, 4),
     args = _indicator[1],
     colors = _indicator[2],
@@ -148,48 +152,75 @@ function prepareTradingViewIndicatorConfig(_ref) {
     }, isRSIIndicator ? RSI_META_PROPERTIES : {}),
     constructor: function constructor() {
       this.lastUpdatedTime = null;
+      this.memoizedIndicatorValues = {};
+      this.isFirstCandleReached = false;
       this.prepareLinesPosition = function (v) {
-        if (isSinglePlot && !_isObject(v)) {
-          return [v];
+        if (!_isObject(v) || !lines) {
+          return [v || NaN];
         }
-        var linesPosition = [];
-        _forEach(lines, function (l) {
-          linesPosition.push(v[l]);
+        var linesPosition = _map(lines, function (l) {
+          return v[l];
         });
         return linesPosition;
       };
-      this.main = function (ctx, inputCallback) {
-        this._context = ctx;
-        this._input = inputCallback;
-        var price;
+      this.getPriceFromContext = function () {
         if (useCandles) {
-          price = {
+          var price = {
             high: PineJS.Std.high(this._context),
             low: PineJS.Std.low(this._context),
             open: PineJS.Std.open(this._context),
             close: PineJS.Std.close(this._context),
             volume: PineJS.Std.volume(this._context)
           };
-          if (_isNaN(price.high) || _isNaN(price.low) || _isNaN(price.close) || _isNaN(price.volume) || _isNaN(price.open)) {
-            return this.prepareLinesPosition(NaN);
+          if (_some(price, function (p) {
+            return _isNaN(p);
+          })) {
+            return NaN;
           }
+          return price;
         } else {
           var studyFn = PineJS.Std[source];
           if (!_isFunction(studyFn)) {
-            return this.prepareLinesPosition(NaN);
+            return NaN;
           }
-          price = studyFn(this._context);
-          if (_isNaN(price)) {
-            return this.prepareLinesPosition(NaN);
+          var _price = studyFn(this._context);
+          if (_isNaN(_price)) {
+            return NaN;
           }
+          return _price;
         }
-        var currentTime = PineJS.Std.updatetime(this._context);
+      };
+      this.main = function (ctx, inputCallback) {
+        this._context = ctx;
+        this._input = inputCallback;
+        var currentTime = PineJS.Std.time(this._context);
+
+        // Start calculation from the first candle, skip another candles
+        if (currentTime < strategyStartTimestamp) {
+          return;
+        }
+        if (!this.isFirstCandleReached) {
+          if (currentTime !== strategyStartTimestamp) {
+            return;
+          }
+          this.isFirstCandleReached = true;
+        }
+        var price = this.getPriceFromContext();
+        if (_isNaN(price)) {
+          return this.prepareLinesPosition(NaN);
+        }
         if (this.lastUpdatedTime && this.lastUpdatedTime === currentTime) {
           var _v = instance.update(price);
+          this.memoizedIndicatorValues[currentTime] = _v;
           return this.prepareLinesPosition(_v);
         }
-        this.lastUpdatedTime = currentTime;
+        var memoizedValue = this.memoizedIndicatorValues[currentTime];
+        if (!_isUndefined(memoizedValue)) {
+          return this.prepareLinesPosition(memoizedValue);
+        }
         var v = instance.add(price);
+        this.lastUpdatedTime = currentTime;
+        this.memoizedIndicatorValues[currentTime] = v;
         return this.prepareLinesPosition(v);
       };
     }
